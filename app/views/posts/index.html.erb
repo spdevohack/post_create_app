@@ -1,0 +1,76 @@
+
+
+<h1 class="text-center"> User Posts </h1>
+<br>
+
+    <table class="d-flex justify-content-center">
+        <tr>
+            <th class="border-1 p-2 text-center">User Name</th>
+            <th class="border-1 p-2 text-center">ID</th>
+            <th class="border-1 p-2 text-center ">Title </th>
+            <th class="border-1 p-2 text-center">Description</th>
+
+            
+            <td colspan="3">
+            	<td></td>
+            	<td></td>
+            	<td></td>	
+            </td>
+
+        </tr>
+        <% @posts.each do |post| %>
+        <tr>
+            <td class="border-1 p-2 ">
+                <%= user_name(post) %>
+            </td>
+            <td class="border-1 p-2 ">
+                <%= post.id %>
+            </td>
+            <td class="border-1 p-2 ">
+                <%= title(post) %>
+            </td>
+            <td class="border-1 p-2 ">
+                <%= post.description %>
+            </td>
+            <td colspan="3">
+            <td class="border-1 p-2 ">
+                <%= button_to 'Delete', post_path(post), method: :delete, data: {confirm: "Are You Sure?"}, class:'btn btn-danger delete-btn'%>
+            </td>
+            <td class="border-1 p-2 ">
+                <%= button_to 'Show', post_path(post), method: :get %>
+            </td>
+            <td class="border-1 p-2 ">
+                <%= button_to 'Edit', edit_post_path(post), method: :get%>
+            </td>
+            </td>
+        </tr>
+        <% end %>
+      </table>
+      <br>
+
+<div class="d-flex justify-content-center">
+			<%= link_to 'Add Post', posts_new_path, class:"btn btn-secondary" %>
+</div>
+
+
+<script type="text/javascript">
+	var deleteBtn = document.querySelector(".delete-btn")
+
+	deleteBtn.addEventListener("click", confirmDelete)
+
+	function confirmDelete(e){
+
+		let confirmed = "Are you sure?"
+
+		if(confirm(confirmed)){
+			console.log("Yes");
+			
+		}else{
+			console.log("no");
+			event.preventDefault()
+		}
+	
+	}
+	
+</script>
+

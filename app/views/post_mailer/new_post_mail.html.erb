@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>New Post created <%= @post.title %>!</p>
+    <p>
+    Post details<br>
+    --------------------------s
+    </p>
+    <p>Title: <%= @post.title %></p>
+    <p>Description: <%= @post.description %></p>
+
+    <p>
+    User_Id:<br>
+    </p>
+    <p><%= @post.user_id %></p>
+    <p>Link: <%= link_to 'go to post',  post_url(
+      @post) %></p>
+  </body>
+</html>
