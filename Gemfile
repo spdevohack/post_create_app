@@ -78,3 +78,4 @@ gem "letter_opener", group: :development
 gem 'active_model_serializers'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'devise'

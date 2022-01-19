@@ -1,6 +1,9 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, except: [:index]
+  
+
   def index
-    @posts = Post.all.includes(:user)
+    @posts = Post.search(params[:search])
   end
 
   def new
@@ -14,7 +17,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.new(post_params)
     if @post.save!
       redirect_to posts_index_path(@post), notice: "post created successfully"
       PostSendMail.new(@post).send_mail
@@ -40,11 +43,14 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
-    # debugger
-
+   
     @post.destroy
 
-    redirect_to posts_index_path, status: :see_other, notice: "post was successfully deleted"
+    redirect_to posts_index_path, notice: "post was successfully deleted"
+  end
+
+  def search
+    @posts = Post.search(params[:search])
   end
 
 
@@ -52,5 +58,15 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit( :title, :description, :user_id)
   end
+
+
+  # def user_signed?
+  #   if user_signed_in?
+  #     redirect_to new_user_session
+  #   else
+  #     redirect_to posts_index_path  
+  #   end
+  # end
+  
 
 end

@@ -1,41 +1,36 @@
-
-<strong class="fs-1 fw-light"><%= user_name(@post) %></strong>
+<strong class="fs-1 fw-light">
+    <%= user_name(@post) %></strong>
 <hr>
 <br>
-<strong>Title: </strong><%= @post.title %><br><br>
-<strong>Description:</strong> <%= @post.description %>
-
+<strong>Title: </strong>
+<%= @post.title %><br><br>
+<strong>Description:</strong>
+<%= @post.description %>
 <br><br>
-
 <div class="d-flex justify-content-center ">
-<%= link_to 'Back', posts_index_path, class:"btn btn-primary " %>
-<%= link_to 'Edit', edit_post_path, class:"btn btn-primary" %>
-<%= button_to 'Delete', post_path(@post), method: :delete, data: {confirm: "Are You Sure?"}, class:'btn btn-danger delete-btn'%>
-<!-- <input type="button"  name=""> -->
+    <%= link_to 'Back', posts_index_path, class:"btn btn-primary " %>
+    <% if @post.user == current_user %>
+    <%= link_to 'Edit', edit_post_path, class:"btn btn-primary" %>
+    <%= button_to 'Delete', post_path(@post), method: :delete, data: {confirm: "Are You Sure?"}, class:'btn btn-danger delete-btn'%>
+    <% end %>
 </div>
-
 <script type="text/javascript">
-	var deleteBtn = document.querySelector(".delete-btn")
+$(document).ready(function() {
 
-	deleteBtn.addEventListener("click", confirmDelete)
+    var deleteBtn = document.querySelector(".delete-btn")
+    deleteBtn.addEventListener("click", confirmDelete)
 
-	function confirmDelete(e){
+    function confirmDelete(e) {
 
-		let confirmed = "are you sure?"
+        let confirmed = "are you sure?"
 
-		if(confirm(confirmed)){
-			// console.log("Yes");
-			
-		}else{
-			// console.log("no");
-			event.preventDefault()
-		}
-	
-	}
-	
+        if (confirm(confirmed)) {
+            // console.log("Yes");
+
+        } else {
+            // console.log("no");
+            event.preventDefault()
+        }
+    }
+});
 </script>
-
-
-
-
-

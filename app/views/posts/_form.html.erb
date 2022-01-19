@@ -4,8 +4,7 @@
     <%= form.text_field :title, class:'form-control input' %><br>
     <%= form.label :description, "Description:" %><br>
     <%= form.text_area :description , class:'form-control input' %><br>
-    <%= form.label :user_id, "User Id:" %><br>
-    <%= form.text_field :user_id , class:'form-control input' %><br>
+   
    
     <!-- <button id="submit-btn" >Submit</button> -->
     <input id="submit-btn" type="button" value="submit">
@@ -17,15 +16,15 @@
 
   var regTitle = /^[a-zA-Z\s]{3,}$/
   var regDesc = /(.){50,}/
-  var regUserId =  /^[0-9]+$/
+  // var regUserId =  /^[0-9]+$/
 
   var inputArray = document.querySelectorAll(".input");
   var form  =document.querySelector(".form");
 
-  var regArray = [regTitle,regDesc, regUserId]
+  var regArray = [regTitle,regDesc]
 
-  var alertArray = ['Tilte can only contains letter', 'Description must be of more than 50  words', 'User id in number']
-  var inputBlank = ['title must be present', "description must be present", "user id must be present"]
+  var alertArray = ['Tilte can only contains letter', 'Description must be of more than 50  words']
+  var inputBlank = ['title must be present', "description must be present" ]
 
   var array = [];
 
@@ -56,7 +55,6 @@
         	console.log('form submitted')
         	form.submit()
         }
-
     }	
   }
 </script>

@@ -1,76 +1,74 @@
 
+<% if Post.search(params[:search]).empty?%>
+  <div class="text-center bg-light p-5 lead">
+    Sorry!! No Record Found With Related Search !
+  </div>
+<% else %>
 
-<h1 class="text-center"> User Posts </h1>
-<br>
-
-    <table class="d-flex justify-content-center">
-        <tr>
+<table class="d-flex justify-content-center">
+    <%# if user_signed_in? %>
+        <h1 class="text-center"> Users Posts </h1>
+        <% unless @posts.present? %>
+            <div class="text-center bg-light  p-5">You Don't Have Any Post Yet</div>
+            <!-- <p >NO post yet... Create Post</p> -->
+        <% else %>
+          <tr>
             <th class="border-1 p-2 text-center">User Name</th>
             <th class="border-1 p-2 text-center">ID</th>
             <th class="border-1 p-2 text-center ">Title </th>
             <th class="border-1 p-2 text-center">Description</th>
-
-            
-            <td colspan="3">
-            	<td></td>
-            	<td></td>
-            	<td></td>	
-            </td>
-
-        </tr>
-        <% @posts.each do |post| %>
-        <tr>
-            <td class="border-1 p-2 ">
-                <%= user_name(post) %>
-            </td>
-            <td class="border-1 p-2 ">
-                <%= post.id %>
-            </td>
-            <td class="border-1 p-2 ">
-                <%= title(post) %>
-            </td>
-            <td class="border-1 p-2 ">
-                <%= post.description %>
-            </td>
-            <td colspan="3">
-            <td class="border-1 p-2 ">
-                <%= button_to 'Delete', post_path(post), method: :delete, data: {confirm: "Are You Sure?"}, class:'btn btn-danger delete-btn'%>
-            </td>
-            <td class="border-1 p-2 ">
-                <%= button_to 'Show', post_path(post), method: :get %>
-            </td>
-            <td class="border-1 p-2 ">
-                <%= button_to 'Edit', edit_post_path(post), method: :get%>
-            </td>
-            </td>
-        </tr>
+            <% if user_signed_in? %>
+              <th class="border-1 p-2 text-center">Actions</th>
+            <% end %>
+          </tr>
+          <% @posts.each do |post| %>
+              <tr>
+                  <td class="border-1 p-2 ">
+                      <%= post.user.name %>
+                  </td>
+                  <td class="border-1 p-2 ">
+                      <%= post.id %>
+                  </td>
+                  <td class="border-1 p-2 ">
+                      <%= title(post) %>
+                  </td>
+                  <td class="border-1 p-2 ">
+                      <%= post.description %>
+                  </td>
+                  <% if user_signed_in? %>
+                    <td colspan="3" class="d-flex border-1 p-2 align-items-center" style="height: 5rem;">
+                    <% if post.user_id == current_user.id %>
+                      <%= button_to 'Delete', post_path(post), method: :delete, data: {confirm: "Are You Sure?"}, class:'btn  btn-danger delete-btn submitDel', id:"delBtn" %>          
+                      <%= button_to 'Edit', edit_post_path(post), method: :get%>
+                    <% end %>
+                    <%= button_to 'Show', post_path(post), method: :get %>
+                    </td>
+                  <% end %>
+              </tr>   
+          <% end %>
         <% end %>
-      </table>
-      <br>
-
-<div class="d-flex justify-content-center">
-			<%= link_to 'Add Post', posts_new_path, class:"btn btn-secondary" %>
-</div>
-
+        <%# end %>
+</table>
+<% end %>
+<br>
 
 <script type="text/javascript">
-	var deleteBtn = document.querySelector(".delete-btn")
+  $(document).ready(function() {
+    var deleteBtn = document.querySelectorAll('.delete-btn');
+    function confirmDelete(e) {
+       console.log("Fuction")
+       
+      if (confirm("Are you sure?")) {
+        console.log("Yes");
+      } else {
+        console.log("no");
+        event.preventDefault();
+      }
+    
+  }
+  for(var i = 0; i < deleteBtn.length; i++){
+      deleteBtn[i].addEventListener("click", confirmDelete);
+  }
+});
 
-	deleteBtn.addEventListener("click", confirmDelete)
-
-	function confirmDelete(e){
-
-		let confirmed = "Are you sure?"
-
-		if(confirm(confirmed)){
-			console.log("Yes");
-			
-		}else{
-			console.log("no");
-			event.preventDefault()
-		}
-	
-	}
-	
 </script>
-
