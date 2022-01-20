@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  # get 'users/index'
+  get 'users/show'
   # devise_for :users
 
   devise_for :users do
@@ -21,4 +23,5 @@ Rails.application.routes.draw do
   get 'posts/search' => 'posts#search'
 
   resources :posts
+  resources :users
 end

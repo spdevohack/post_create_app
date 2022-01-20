@@ -4,7 +4,10 @@
     <%= form.text_field :title, class:'form-control input' %><br>
     <%= form.label :description, "Description:" %><br>
     <%= form.text_area :description , class:'form-control input' %><br>
-   
+    <%= form.label :attachment %><br>
+    <%= form.file_field :attachment, class:'form-control input' %><br>
+    <%= form.check_box :remove_attachment %>
+     
    
     <!-- <button id="submit-btn" >Submit</button> -->
     <input id="submit-btn" type="button" value="submit">

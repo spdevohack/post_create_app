@@ -3,6 +3,8 @@
   <div class="text-center bg-light p-5 lead">
     Sorry!! No Record Found With Related Search !
   </div>
+  <br>
+  <div class="d-flex justify-content-center"><%= link_to "Back", posts_index_path,  class:"btn btn-primary" %></div>
 <% else %>
 
 <table class="d-flex justify-content-center">
@@ -17,6 +19,7 @@
             <th class="border-1 p-2 text-center">ID</th>
             <th class="border-1 p-2 text-center ">Title </th>
             <th class="border-1 p-2 text-center">Description</th>
+
             <% if user_signed_in? %>
               <th class="border-1 p-2 text-center">Actions</th>
             <% end %>
@@ -35,6 +38,7 @@
                   <td class="border-1 p-2 ">
                       <%= post.description %>
                   </td>
+                
                   <% if user_signed_in? %>
                     <td colspan="3" class="d-flex border-1 p-2 align-items-center" style="height: 5rem;">
                     <% if post.user_id == current_user.id %>

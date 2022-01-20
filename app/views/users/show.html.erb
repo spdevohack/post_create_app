@@ -1,0 +1,14 @@
+<strong>ID:</strong>
+<%= @user.id%> <br><br>
+<strong>Name:</strong>
+<%= @user.name%> <br><br>
+<strong>Phone :</strong>Number
+<%= @user.phone_number%><br><br>
+<strong>Email : </strong>
+<%= @user.email%> <br><br>
+<strong> Password:</strong>
+<%= @user.password%> <br><br>
+<strong> profile Pic: </strong><br><br>
+<%= image_tag (@user.file.url) %>
+<br>
+<div class="d-flex justify-content-center"><%= link_to "Back", posts_index_path,  class:"btn btn-primary" %></div>

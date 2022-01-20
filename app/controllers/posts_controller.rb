@@ -53,10 +53,17 @@ class PostsController < ApplicationController
     @posts = Post.search(params[:search])
   end
 
-
+  def download
+    @post = Post.find(params[:id])
+    send_file(@model.file.path,
+          :filename => @model.file.name,
+          :type => @model.file.content_type,
+          :disposition => 'attachment',
+          :url_based_filename => true)
+  end
  private
   def post_params
-    params.require(:post).permit( :title, :description, :user_id)
+    params.require(:post).permit( :title, :description, :attachment, :user_id)
   end
 
 

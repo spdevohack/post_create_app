@@ -79,3 +79,6 @@ gem 'active_model_serializers'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'devise'
+gem 'carrierwave', '~> 2.0'
+gem "mini_magick"
+gem 'rmagick'

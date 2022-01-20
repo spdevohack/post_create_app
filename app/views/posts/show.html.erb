@@ -7,6 +7,12 @@
 <strong>Description:</strong>
 <%= @post.description %>
 <br><br>
+<strong>Image:</strong>
+<div>
+<%= image_tag (@post.attachment.url), alt: "Uploaded image" if @post.attachment.url %>
+</div>
+<%= link_to "Download", @post.attachment.url %>
+<br><br>
 <div class="d-flex justify-content-center ">
     <%= link_to 'Back', posts_index_path, class:"btn btn-primary " %>
     <% if @post.user == current_user %>
@@ -16,19 +22,18 @@
 </div>
 <script type="text/javascript">
 $(document).ready(function() {
-
     var deleteBtn = document.querySelector(".delete-btn")
     deleteBtn.addEventListener("click", confirmDelete)
 
     function confirmDelete(e) {
-
+            console.log("Function")
         let confirmed = "are you sure?"
 
         if (confirm(confirmed)) {
-            // console.log("Yes");
+            console.log("Yes");
 
         } else {
-            // console.log("no");
+            console.log("no");
             event.preventDefault()
         }
     }
