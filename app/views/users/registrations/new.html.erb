@@ -57,22 +57,4 @@
 <% end %>
 
 <%= render "users/shared/links" %>
-<!-- 
-<script>
-  var country = document.querySelector('#country')
-  var state = document.getElementById("state")
-  var city = document.getElementById("city")
-  console.log(country.value);
 
-  country.addEventListener('change', function(){
-    while (state.firstChild) state.removeChild(state.firstChild);
-      <% CS.states(:IN).each do |key, value|%>
-        var placeholder = document.createElement("option");
-        placeholder.text = '<%= value %>';
-        placeholder.value = '<%= key %>';
-        state.appendChild(placeholder); 
-      <% end %>
-    console.log("inside function");
-  })
-
-</script> -->
