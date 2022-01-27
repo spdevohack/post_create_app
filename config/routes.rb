@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   #   get '/users/sign_out' => 'devise/sessions#destroy'
   # end
   
-  devise_for :users, :controllers => { :registrations => 'users/registrations' }
-  # devise_for :users, :controllers => {:registrations => 'users/registrations', :omniauth_callbacks =>'users/omniauth' }
+  # devise_for :users, :controllers => { :registrations => 'users/registrations' }
+  devise_for :users, :controllers => {:registrations => 'users/registrations', :omniauth_callbacks =>'users/omniauth' }
   
   get 'posts/index'
   get 'posts/new'
