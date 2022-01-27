@@ -1,14 +1,22 @@
-<strong>ID:</strong>
-<%= @user.id%> <br><br>
-<strong>Name:</strong>
-<%= @user.name%> <br><br>
-<strong>Phone :</strong>Number
-<%= @user.phone_number%><br><br>
-<strong>Email : </strong>
-<%= @user.email%> <br><br>
-<strong> Password:</strong>
-<%= @user.password%> <br><br>
-<strong> profile Pic: </strong><br><br>
-<%= image_tag (@user.file.url) %>
+<p class="fs-1 fw-light text-center"><%= @user.name%> <br></p>
+<hr>
+
+<div class="d-flex justify-content-between container" style="max-width: 20%;">
+	
+	<div class="pt-4">
+		<p><strong>ID : </strong><%= @user.id%> <br></p>
+		
+		<p><strong>Contact No :</strong><%= @user.phone_number%><br></p>
+		<p><strong>Email : </strong><%= @user.email%> <br></p>
+	</div>
+	<div>
+		<div>	
+		<% if @user.file.url.present?%>
+			<strong> profile Pic: </strong><br><br>
+			<%= image_tag @user.file.url %>	
+		<% end %>
+		</div>
+	</div>
+</div>
 <br>
 <div class="d-flex justify-content-center"><%= link_to "Back", posts_index_path,  class:"btn btn-primary" %></div>

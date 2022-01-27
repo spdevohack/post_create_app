@@ -17,10 +17,11 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = current_user.posts.new(post_params)
+    @post = current_user.posts.new(post_params) #link every post with user 
+    
     if @post.save!
       redirect_to posts_index_path(@post), notice: "post created successfully"
-      PostSendMail.new(@post).send_mail
+      PostSendMail.new(@post).send_mail      #Using services for Sending mail 
     else
       render 'new'
     end
@@ -43,24 +44,27 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
-   
     @post.destroy
-
     redirect_to posts_index_path, notice: "post was successfully deleted"
   end
 
-  def search
-    @posts = Post.search(params[:search])
-  end
+  # def search
+  #   @posts = Post.search(params[:search])
+  # end
 
-  def download
-    @post = Post.find(params[:id])
-    send_file(@model.file.path,
-          :filename => @model.file.name,
-          :type => @model.file.content_type,
-          :disposition => 'attachment',
-          :url_based_filename => true)
-  end
+  # def download
+  #   post = Post.find(params[:id]).attachment.url
+  #   send_file Rails.root.join("uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}", post), type: 'image/jpeg'
+  # end
+
+  # def pdf    
+  #       file_name = params[:feed_image_path].split('/').last
+  #       @filename ="#{Rails.root}/public/uploads/feed_image/feedimage/#{file_name}"
+  #       send_file(@filename ,
+  #         :type => 'application/pdf/docx/html/htm/doc',
+  #         :disposition => 'attachment')           
+  # end
+
  private
   def post_params
     params.require(:post).permit( :title, :description, :attachment, :user_id)

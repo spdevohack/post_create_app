@@ -13,6 +13,20 @@
     <%= f.text_field :phone_number %>
   </div>
 
+  <div class="field">
+    <%= f.label :country%>
+    <%= select_tag :country, options_for_select(CS.countries.map { |c| [c[1], c[0]] }), id:"country" %><br /> 
+  </div>
+
+  <div class="field">
+    <%= f.label :state%>
+    <%= select_tag :state, options_for_select(CS.states(:AD).invert), id:"state" %><br /> 
+  </div>
+
+  <div class="field">
+    <%= f.label :city%>
+    <%= select_tag :city, options_for_select([]),id:"city" %><br /> 
+  </div>
 
   <div class="field">
     <%= f.label :file, "Profile Picture" %><br />
@@ -43,3 +57,22 @@
 <% end %>
 
 <%= render "users/shared/links" %>
+<!-- 
+<script>
+  var country = document.querySelector('#country')
+  var state = document.getElementById("state")
+  var city = document.getElementById("city")
+  console.log(country.value);
+
+  country.addEventListener('change', function(){
+    while (state.firstChild) state.removeChild(state.firstChild);
+      <% CS.states(:IN).each do |key, value|%>
+        var placeholder = document.createElement("option");
+        placeholder.text = '<%= value %>';
+        placeholder.value = '<%= key %>';
+        state.appendChild(placeholder); 
+      <% end %>
+    console.log("inside function");
+  })
+
+</script> -->

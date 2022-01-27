@@ -3,9 +3,12 @@ Rails.application.routes.draw do
   get 'users/show'
   # devise_for :users
 
-  devise_for :users do
-    get '/users/sign_out' => 'devise/sessions#destroy'
-  end
+  # devise_for :users do
+  #   get '/users/sign_out' => 'devise/sessions#destroy'
+  # end
+  
+  devise_for :users, :controllers => { :registrations => 'users/registrations' }
+  # devise_for :users, :controllers => {:registrations => 'users/registrations', :omniauth_callbacks =>'users/omniauth' }
   
   get 'posts/index'
   get 'posts/new'
@@ -20,7 +23,8 @@ Rails.application.routes.draw do
   root "posts#index"
   # root "homes#index"
 
-  get 'posts/search' => 'posts#search'
+  # get 'posts/search' => 'posts#search'
+  get "posts/download"
 
   resources :posts
   resources :users

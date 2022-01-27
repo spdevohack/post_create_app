@@ -1,6 +1,6 @@
 class AttachmentUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
-  # include CarrierWave::RMagick
+  include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
@@ -33,21 +33,20 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  process scale: [10, 10]
+  # process scale: [10, 10]
 
   # def image?(carrier_wave_sanitized_file)
   #   true
   # end
   
-  def scale(width, height)
-    
-  end
+  # def scale(width, height)   
+  # end
   # process resize_to_fill: [100, 100]
 
-  # Create different versions of your uploaded files:
-  version :thumb do
-    process resize_to_fit: [50, 50]
-  end
+  # # Create different versions of your uploaded files:
+  # version :thumb do
+  #   process resize_to_fit: [50, 50]
+  # end
 
   # Add an allowlist of extensions which are allowed to be uploaded.
   # # For images you might use something like this:

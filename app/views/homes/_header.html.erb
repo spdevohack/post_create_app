@@ -40,9 +40,10 @@
         </li>
       <% end %>   
       </ul>
+
       <%= form_with url: posts_index_path, method: :get do |form| %>
-      <%= form.text_field :search %>
-      <%= form.submit "Search" %>
+        <%= form.text_field :search %>
+        <%= form.submit "Search" %>
       <% end %>
     
     </div>

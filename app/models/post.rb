@@ -3,6 +3,8 @@ class Post < ApplicationRecord
   validates :title, format: {with: /\A[A-Za-z\s]+\z/, message: "only letters are allowed"}, presence: true
   validates :description, length: {minimum: 50, message: "is too short please type again"}, presence: true
 
+  enum state: {draft: 0, published: 1 }
+
   mount_uploader :attachment, AttachmentUploader
 
 
@@ -17,6 +19,5 @@ class Post < ApplicationRecord
       all
     end
   end
-
 
 end

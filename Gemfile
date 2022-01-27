@@ -70,6 +70,7 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
 gem 'awesome_print'
 gem "byebug", "~> 11.1", :groups => [:development, :test]
 gem 'dotenv-rails'
@@ -82,3 +83,19 @@ gem 'devise'
 gem 'carrierwave', '~> 2.0'
 gem "mini_magick"
 gem 'rmagick'
+gem 'image_processing'
+gem 'city-state'
+gem 'humanize'
+gem 'bcrypt'
+
+
+# Use Omniauth Facebook plugin
+gem 'omniauth-facebook'
+# Use Omniauth GitHub plugin
+gem 'omniauth-github'
+# Use Omniauth Google plugin
+gem 'omniauth-google-oauth2'
+# Use Omniauth Twitter plugin
+gem 'omniauth-twitter'
+# Use ActiveRecord Sessions
+gem 'activerecord-session_store'
