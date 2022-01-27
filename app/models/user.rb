@@ -19,21 +19,21 @@ class User < ApplicationRecord
     end
   end
 
-	has_many :posts 
+	has_many :posts , dependent: :destroy
   mount_uploader :file, FileUploader
 
 
-  # def soft_delete  
-  #   update_attribute(:deleted_at, Time.current)  
-  # end  
+  def soft_delete  
+    update_attribute(:deleted_at, Time.current)  
+  end  
 
-  # def active_for_authentication?  
-  #   super && !deleted_at  
-  # end  
+  def active_for_authentication?  
+    super && !deleted_at  
+  end  
 
-  # def inactive_message   
-  #   !deleted_at ? super : :deleted_account  
-  # end  
+  def inactive_message   
+    !deleted_at ? super : :deleted_account  
+  end  
 
   # u = User.new
 

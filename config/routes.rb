@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   
   # devise_for :users, :controllers => { :registrations => 'users/registrations' }
   # devise_for :users, :controllers => {:registrations => 'users/registrations', :omniauth_callbacks =>'users/omniauth' }
-  
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth' }
+
+  devise_for :users, controllers: { :registrations => 'users/registrations',omniauth_callbacks: 'users/omniauth' }
   
   get 'posts/index'
   get 'posts/new'
@@ -27,6 +27,7 @@ Rails.application.routes.draw do
 
   # get 'posts/search' => 'posts#search'
   get "posts/download"
+  # get 'cities/:state', to: 'application#cities'
 
   resources :posts
   resources :users
