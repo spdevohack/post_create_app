@@ -47,6 +47,10 @@ class PostsController < ApplicationController
     redirect_to posts_index_path, notice: "post was successfully deleted"
   end
 
+  def draft
+   
+  end
+
 
 
   # def search
@@ -68,7 +72,8 @@ class PostsController < ApplicationController
 
  private
   def post_params
-    params.require(:post).permit( :title, :description, :attachment, :user_id)
+
+    params.require(:post).permit( :title, :description, :attachment, :state)
   end
 
 
