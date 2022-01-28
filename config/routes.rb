@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   # devise_for :users, :controllers => { :registrations => 'users/registrations' }
   # devise_for :users, :controllers => {:registrations => 'users/registrations', :omniauth_callbacks =>'users/omniauth' }
 
-  devise_for :users, controllers: { :registrations => 'users/registrations',omniauth_callbacks: 'users/omniauth' }
+  # devise_for :users, controllers: { :registrations => 'users/registrations',omniauth_callbacks: 'users/omniauth' }
+    devise_for :users, controllers: { :registrations => 'users/registrations', sessions: 'users/sessions', omniauth_callbacks: 'users/omniauth' }
   
   get 'posts/index'
   get 'posts/new'
@@ -19,6 +20,7 @@ Rails.application.routes.draw do
   get 'posts/edit'
   get 'posts/update'
   get 'posts/destroy'
+  get 'posts/draft'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
@@ -28,7 +30,8 @@ Rails.application.routes.draw do
   # get 'posts/search' => 'posts#search'
   get "posts/download"
   # get 'cities/:state', to: 'application#cities'
+  get 'usera/state' => 'users#state'
 
   resources :posts
-  resources :users
+  resources :states, only: :index
 end

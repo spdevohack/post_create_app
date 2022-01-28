@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   
-
   def index
     @posts = Post.search(params[:search])
   end
@@ -47,6 +46,8 @@ class PostsController < ApplicationController
     @post.destroy
     redirect_to posts_index_path, notice: "post was successfully deleted"
   end
+
+
 
   # def search
   #   @posts = Post.search(params[:search])

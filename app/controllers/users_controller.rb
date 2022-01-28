@@ -12,8 +12,12 @@ class UsersController < ApplicationController
     @user.destroy ? @user.update(deleted_account = false) : @user.update(deleted_account = true)
   end
 
-  # def state
-  #   render json: CS.state(params[:country]).to_json
+  # def states
+  #   @target = params[:target]
+  #   @states = CS.get(params[:country]).invert
+  #   respond_to do |format|
+  #     format.turbo_stream
+  #   end
   # end
 
   # def city

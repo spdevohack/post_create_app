@@ -99,3 +99,5 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-twitter'
 # Use ActiveRecord Sessions
 gem 'activerecord-session_store'
+gem 'hotwire-rails'
+

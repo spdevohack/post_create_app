@@ -1,0 +1,56 @@
+<% if Post.search(params[:search]).empty?%>
+  <div class="text-center bg-light p-5 lead">
+    Sorry!! No Record Found With Related Search !
+  </div>
+  <br>
+  <div class="d-flex justify-content-center"><%= link_to "Back", posts_index_path,  class:"btn btn-primary" %></div>
+<% else %>
+
+<table class="d-flex justify-content-center">
+    <%# if user_signed_in? %>
+        <h1 class="text-center"> Users Posts </h1>
+        <% unless @posts.present? %>
+            <div class="text-center bg-light  p-5">You Don't Have Any Post Yet</div>
+            <!-- <p >NO post yet... Create Post</p> -->
+        <% else %>
+          <tr>
+            <th class="border-1 p-2 text-center">User Name</th>
+            <th class="border-1 p-2 text-center">ID</th>
+            <th class="border-1 p-2 text-center ">Title </th>
+            <th class="border-1 p-2 text-center">Description</th>
+
+            <% if user_signed_in? %>
+              <th class="border-1 p-2 text-center">Actions</th>
+            <% end %>
+          </tr>
+          <% @posts.each do |post| %>
+              <tr>
+                  <td class="border-1 p-2 ">
+                      <%= post.user.name %>
+                  </td>
+                  <td class="border-1 p-2 ">
+                      <%= post.id %>
+                  </td>
+                  <td class="border-1 p-2 ">
+                      <%= title(post) %>
+                  </td>
+                  <td class="border-1 p-2 ">
+                      <%= post.description %>
+                  </td>
+                
+                  <% if user_signed_in? %>
+                    <td colspan="3" class="d-flex border-1 p-2 align-items-center" style="height: 5rem;">
+                    <% if post.user_id == current_user.id %>
+                      <%= button_to 'Delete', post_path(post), method: :delete, data: {confirm: "Are You Sure?"}, class:'btn  btn-danger delete-btn submitDel', id:"delBtn" %>          
+                      <%= button_to 'Edit', edit_post_path(post), method: :get%>
+                    <% end %>
+                    <%= button_to 'Show', post_path(post), method: :get %>
+                    </td>
+                  <% end %>
+              </tr>   
+          <% end %>
+        <% end %>
+        <%# end %>
+</table>
+<% end %>
+<br>
