@@ -1,0 +1,14 @@
+var city = document.getElementById("city");
+while (city.firstChild) city.removeChild(city.firstChild);
+
+// Add a placeholder
+var placeholder = document.createElement("option");
+placeholder.text = "Choose a city";
+placeholder.value = "";
+city.appendChild(placeholder);
+
+// Use erb templating to add the states
+<% @cities.each do |c| %>
+  city.options[city.options.length] = new Option('<%= c %>')
+  // console.log(c[1]);
+<% end %>

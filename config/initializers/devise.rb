@@ -321,5 +321,5 @@ Devise.setup do |config|
   config.omniauth :github, ENV['GITHUB_APP_ID'], ENV['GITHUB_APP_SECRET'], scope: 'user,public_repo'
   config.omniauth :google_oauth2, ENV['GOOGLE_APP_ID'], ENV['GOOGLE_APP_SECRET'], scope: 'userinfo.email,userinfo.profile'
   # # config.omniauth :twitter, ENV['TWITTER_APP_ID'], ENV['TWITTER_APP_SECRET']
-  OmniAuth.config.allowed_request_methods = %i[get]
+  # OmniAuth.config.allowed_request_methods = %i[get]
 end

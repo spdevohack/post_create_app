@@ -37,7 +37,7 @@ class Users::OmniauthController < ApplicationController
 # end
 
 
-  # github callback
+  #github callback
 def github
   @user = User.create_from_provider_data(request.env['omniauth.auth'])
   if @user.persisted?

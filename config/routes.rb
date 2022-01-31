@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     devise_for :users, controllers: { :registrations => 'users/registrations', sessions: 'users/sessions', omniauth_callbacks: 'users/omniauth' }
   
   get 'posts/index'
-  get 'posts/new'
+  get 'posts/new' 
   get 'posts/show'
   get 'posts/create'
   get 'posts/edit'
@@ -33,5 +33,7 @@ Rails.application.routes.draw do
   get 'usera/state' => 'users#state'
 
   resources :posts
-  resources :states, only: :index
+  # resources :states, only: :index
+  get 'sign_up', to: 'states#index'
+  get 'towns', to: 'towns#city'
 end

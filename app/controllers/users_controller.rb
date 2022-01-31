@@ -21,7 +21,8 @@ class UsersController < ApplicationController
   # end
 
   # def city
-  #   render json: CS.cities(params[:state], params[:country])
+  #   @cities = CS.cities(params[:state], params[:country])
+  #   debugger
   # end
 
 end

@@ -15,6 +15,22 @@
   </div>
 
   <div class="field">
+    <%= f.label :country%>
+    <%= select_tag :country, options_for_select(CS.countries.map { |c| [c[1], c[0]] }), id:"country" %><br /> 
+  </div>
+
+  <div class="field">
+    <%= f.label :state%>
+    <%= select_tag :state, options_for_select([]), id:"state" %><br /> 
+  </div>
+
+  <div class="field">
+    <%= f.label :city%>
+    <%= select_tag :city, options_for_select([]), id:"city" %><br /> 
+  </div>
+
+
+  <div class="field">
     <%= f.label :file, "Profile Picture" %><br />
     <%= f.file_field :file %>
   </div>
@@ -57,3 +73,5 @@
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
+
+<%= javascript_include_tag "cities" %>

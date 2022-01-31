@@ -23,7 +23,10 @@
     <%= select_tag :state, options_for_select([]), id:"state" %><br /> 
   </div>
 
-  
+  <div class="field">
+    <%= f.label :city%>
+    <%= select_tag :city, options_for_select([]), id:"city" %><br /> 
+  </div>
 
   <div class="field">
     <%= f.label :file, "Profile Picture" %><br />
@@ -55,3 +58,4 @@
 
 <%= render "users/shared/links" %>
 
+<%= javascript_include_tag "cities" %>
