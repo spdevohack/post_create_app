@@ -1,5 +1,5 @@
-  var country = document.getElementById("country");
-  var state = document.getElementById("state");
+  var country = document.getElementById("user_country");
+  var state = document.getElementById("user_state");
   // var city = document.getElementById("city");
   console.log(1)
 

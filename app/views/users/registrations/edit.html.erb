@@ -16,17 +16,17 @@
 
   <div class="field">
     <%= f.label :country%>
-    <%= select_tag :country, options_for_select(CS.countries.map { |c| [c[1], c[0]] }), id:"country" %><br /> 
+    <%= select_tag :country, options_for_select(CS.countries.map { |c| [c[1], c[0]] }), id:"user_country" %><br /> 
   </div>
 
   <div class="field">
     <%= f.label :state%>
-    <%= select_tag :state, options_for_select([]), id:"state" %><br /> 
+    <%= select_tag :state, options_for_select([]), id:"user_state" %><br /> 
   </div>
 
   <div class="field">
     <%= f.label :city%>
-    <%= select_tag :city, options_for_select([]), id:"city" %><br /> 
+    <%= select_tag :city, options_for_select([]), id:"user_city" %><br /> 
   </div>
 
 

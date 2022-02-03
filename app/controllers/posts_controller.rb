@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
+  skip_before_action :verify_authenticity_token
   
   def index
     @posts = Post.search(params[:search])
@@ -48,7 +49,16 @@ class PostsController < ApplicationController
   end
 
   def draft
-   
+      @post = current_user.posts.new(post_params)
+      if @post.save
+        @post.update(state: "draft");
+        # debugger
+      end
+
+  end
+
+  def draft_show
+    @drafts = Post.where(state: "draft")
   end
 
 
@@ -72,7 +82,6 @@ class PostsController < ApplicationController
 
  private
   def post_params
-
     params.require(:post).permit( :title, :description, :attachment, :state)
   end
 

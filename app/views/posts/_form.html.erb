@@ -1,16 +1,19 @@
 <div class="d-flex justify-content-center align-item-center">
     <%= form_with  class: "form", model: @post, url: @action == 'edit' ? post_path : posts_path, method: @action == 'edit' ? :PATCH : :POST do |form| %>
       <%= form.label :title,  "Title:" %><br>
-      <%= form.text_field :title, class:'form-control input' %><br>
+      <%= form.text_field :title, class:'form-control input', id:'post_title' %><br>
       <%= form.label :description, "Description:" %><br>
-      <%= form.text_area :description , class:'form-control input' %><br>
+      <%= form.text_area :description , class:'form-control input', id:'post_description'%><br>
       <%= form.label :attachment %><br>
       <%= form.file_field :attachment, class:'form-control input' %><br>
-      <input id="draft-btn" type="button" value="Save As Draft"></input> 
-      <input id="submit-btn" type="button" value="Publish"></input>  
+      <input id="draft-btn" type="button" value="Save As Draft" name= 'draft'></input> 
+      <input id="submit-btn" type="button" value="Publish" name= 'publish' ></input>  
 
     <% end %>
 </div>
+
+<%= javascript_include_tag "draft" %>
+
 
 <script type="text/javascript">
 var regTitle = /^[a-zA-Z\s]{3,}$/
@@ -22,13 +25,7 @@ var alertArray = ['Tilte can only contains letter', 'Description must be of more
 var inputBlank = ['title must be present', "description must be present"]
 var array = [];
 var submitBtn = document.querySelector("#submit-btn");
-var draftBtn = document.querySelector("#draft-btn");
 
-// draftBtn.addEventListener("click", saveDraft)
-// function saveDraft(e){
-//   console.log("draft click");
-//   form.submit();
-// }
 
 submitBtn.addEventListener("click", validation);
 function validation(e) {
