@@ -15,6 +15,4 @@ function saveDraft(e){
 
     })
 
-    // form.submit();
-
 }

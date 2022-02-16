@@ -1,0 +1,25 @@
+
+  <% @posts.each do |post| %>
+    <% if post.state == 'published'%>
+      <tr style="height: 200px;" >
+        <td class="border-1   "><%= post.user.name %></td>
+        <td class="border-1 "><%= post.id %></td>
+        <td class="border-1  "><%= post.title %></td>
+        <td class="border-1 "><%= post.description %></td>
+
+        <% if user_signed_in? %>
+          <td class="border-1">
+            <div class="d-flex justify-content-center">
+              <% if post.user_id == current_user.id %>
+                <%= button_to 'Delete', post_path(post), method: :delete, data: {confirm: "Are You Sure?"}, class:'btn  btn-danger delete-btn submitDel', id:"delBtn" %>
+                <%= button_to 'Edit', edit_post_path(post), method: :get%>
+              <% end %>
+                <%= button_to 'Show', post_path(post), method: :get %>             
+            </div>
+          </td>
+        <% end %>
+      </tr>   
+    <% end %>
+  <% end %>  
+      
+          

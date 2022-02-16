@@ -4,3 +4,4 @@
 //= link_tree ../../../vendor/javascript .js
 //= link cities
 //= link draft
+//= link pagination

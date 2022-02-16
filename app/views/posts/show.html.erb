@@ -1,24 +1,19 @@
 <div class="d-flex justify-content-center p-2">
-<div>
-   
- <strong class="fs-1 fw-light"><%= user_name(@post)  %></strong>
-
-<hr>
-<strong>Title: </strong><%= @post.title %><br><br>
-<strong>Description:</strong><%= @post.description %><br><br>
-</div>
+  <div><strong class="fs-1 fw-light"><%= @post.user.name  %></strong>
+    <hr>
+    <strong>Title: </strong><%= @post.title %><br><br>
+    <strong>Description:</strong><%= @post.description %><br><br>
+  </div>
 </div>
 
-<div class="p-2">
-<%if @post.attachment.url %>
-<strong>Image:</strong><br>
-<%= image_tag @post.attachment.url, width:200, height:300, alt: "Uploaded image"  %><br>
-<%= link_to  "click to Download", @post.attachment.url, download: "", class: "btn btn-primary mt-2" %>
-<% end %>
+<div class="p-2 text-center">
+  <%if @post.attachment.url %>
+    <strong>Image:</strong><br>
+    <%= image_tag @post.attachment.url, width:200, height:300, alt: "Uploaded image"  %><br>
+    <%= link_to  "click to Download", @post.attachment.url, download: "", class: "btn btn-primary mt-2" %>
+  <% end %>
 </div>
 <br><br>
-
-
 
 <div class="d-flex justify-content-center ">
     <%= link_to 'Back', posts_index_path, class:"btn btn-primary " %>

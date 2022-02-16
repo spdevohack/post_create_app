@@ -10,14 +10,14 @@ class Post < ApplicationRecord
 
 
 #Search Bar Query
-  def self.search(search)
-    if search
-      where("title iLIKE ?", "%#{search}%").order("title")
-      # joins(:user).where("name iLIKE ?", "%#{search}%").order("posts.id desc")
-      # where("")
-    else   
-      all
-    end
-  end
+  # def self.search(search)
+  #   if search
+  #     where("title iLIKE ?", "%#{search}%").order("title")
+  #     # joins(:user).where("name iLIKE ?", "%#{search}%").order("posts.id desc")
+  #     # where("")
+  #   else   
+  #     all
+  #   end
+  # end
 
 end

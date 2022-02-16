@@ -24,7 +24,7 @@ class User < ApplicationRecord
     where(provider: provider_data.provider, uid: provider_data.uid).first_or_create do | user |
       user.email = provider_data.info.email
       user.password = Devise.friendly_token[0, 20]
-      user.skip_confirmation!
+      # user.skip_confirmation!
     end
   end
 
@@ -32,17 +32,17 @@ class User < ApplicationRecord
   mount_uploader :file, FileUploader
 
 
-  def soft_delete  
-    update_attribute(:deleted_at, Time.current)  
-  end  
+  # def soft_delete  
+  #   update_attribute(:deleted_at, Time.current)  
+  # end  
 
-  def active_for_authentication?  
-    super && !deleted_at  
-  end  
+  # def active_for_authentication?
+  # super && self.active #self.your_method_for_checking_active # i.e. super && self.is_active
+  # end
 
-  def inactive_message   
-    !deleted_at ? super : :deleted_account  
-  end  
+  # def inactive_message   
+  #   !deleted_at ? super : :deleted_account  
+  # end  
 
   # u = User.new
 

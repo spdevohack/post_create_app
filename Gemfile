@@ -101,3 +101,5 @@ gem 'omniauth-twitter'
 gem 'activerecord-session_store'
 gem 'hotwire-rails'
 
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'

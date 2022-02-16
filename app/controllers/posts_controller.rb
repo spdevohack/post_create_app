@@ -3,7 +3,13 @@ class PostsController < ApplicationController
   skip_before_action :verify_authenticity_token
   
   def index
-    @posts = Post.search(params[:search])
+    # @posts = Post.search(params[:search])
+    @posts = Post.where(state: "published").paginate(:page => params[:page], :per_page => 6).order(:id)
+    # debugger
+     respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def new
@@ -20,7 +26,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.new(post_params) #link every post with user 
     
     if @post.save!
-      redirect_to posts_index_path(@post), notice: "post created successfully"
+      redirect_to posts_index_path, notice: "post created successfully"
       PostSendMail.new(@post).send_mail      #Using services for Sending mail 
     else
       render 'new'
@@ -36,7 +42,7 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to posts_index_path(@post), notice: "post was successfully updated"
+      redirect_to posts_index_path, notice: "post was successfully updated"
     else
       render "edit"
     end
@@ -82,7 +88,7 @@ class PostsController < ApplicationController
 
  private
   def post_params
-    params.require(:post).permit( :title, :description, :attachment, :state)
+    params.require(:post).permit( :title, :description, :attachment )
   end
 
 
